@@ -3,45 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tigran <tigran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:31:18 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/03/14 18:52:05 by tyavroya         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:41:55 by tigran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void sort_stack (t_stack *input) {
-	t_stack	tmp_stack;
-	int	tmp;
-	int count;
-
-	count = 0;
-	init(&tmp_stack);
-	while (input->head != NULL)
-	{
-		tmp = input->head->value;
-		pop_front(input);
-		while (tmp_stack.head != NULL && tmp_stack.head->value < tmp)
-		{
-			push_stack(input, &tmp_stack);
-			++count;
-		}
-		push_front(&tmp_stack, tmp);
-	}
-	printf("The count is: %d\n\n", count);
-	print(&tmp_stack);
+static int	__is_whitespace(const char ch)
+{
+	return (ch == '\t' || ch == ' ' || ch == '\v'
+		|| ch == '\n' || ch == '\f' || ch == '\r');
 }
 
-int	main()
+static void __error ()
 {
-	t_stack	list;
+	write (1, "Error\n", 6);
+	exit(1);
+}
 
-	init(&list);
-	for (int i = 12; i > 0; --i) {
-		push_front(&list, i);
+int	ft_atoi(const char *str)
+{
+	long long	res;
+	int			sign;
+	int			i;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	if (str[i] == '-')
+	{
+		sign = (-1) * sign;
+		++i;
 	}
-	sort_stack(&list);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		++i;
+		if (res > INT_MAX || res < INT_MIN)
+			__error();
+	}
+	if (!__is_whitespace(str[i]) && str[i] != '\0')
+		__error();
+	return (sign * res);
+}
+
+void sort_stack (t_stack *input) {
+	t_stack	tmp_stack;
+	int		tmp;
+	
+	init(&tmp_stack, 'b');
+	while (input->head != NULL)
+	{
+		if (input->size >= 2 && input->head->next->value > input->head->value)
+			swap_stack(input);
+		if (input->head->value < input->tail->value)
+			reverse_rotate_stack(input);
+		tmp = input->head->value;
+		pop_front(input);
+		printf("pb\n");
+		while (tmp_stack.head != NULL && tmp_stack.head->value < tmp)
+			push_stack(input, &tmp_stack);
+		push_front(&tmp_stack, tmp);
+	}
+	__move_list(input, &tmp_stack);
+}
+
+int	main(int argc, char **argv)
+{
+	int		i;
+	t_stack	a;
+
+	if (argc < 2)
+		__error();
+	i = 1;
+	init(&a, 'a');
+	while (i < argc)
+	{
+		push_front(&a, ft_atoi(argv[i]));
+		++i;
+	}
+	sort_stack(&a);
+	print(&a);
+	clear(&a);
 	return (0);
 }

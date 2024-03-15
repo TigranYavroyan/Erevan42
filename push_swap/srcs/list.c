@@ -12,10 +12,11 @@
 
 #include "../includes/push_swap.h"
 
-void	init(t_stack *list)
+void	init(t_stack *list, char name)
 {
 	list->head = NULL;
 	list->tail = NULL;
+	list->name = name;
 	list->size = 0;
 }
 
