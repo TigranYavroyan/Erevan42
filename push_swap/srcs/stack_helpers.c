@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigran <tigran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:43:42 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/03/15 19:54:22 by tigran           ###   ########.fr       */
+/*   Updated: 2024/03/22 18:56:54 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	swap_stack(t_stack *list)
+void	swap_stack(t_stack *list)
 {
 	t_Node	*tmp;
 
@@ -26,23 +26,21 @@ int	swap_stack(t_stack *list)
 		list->tail->next = NULL;
 	}
 	printf("s%c\n", list->name);
-	return 1;
 }
 
-int	push_stack(t_stack *to, t_stack *from)
+void	push_stack(t_stack *to, t_stack *from)
 {
 	if (from->head == NULL)
-		return 0;
+		return ;
 	push_front(to, from->head->value);
 	pop_front(from);
 	printf("p%c\n", to->name);
-	return 1;
 }
 
-int	rotate_stack(t_stack *list)
+void	rotate_stack(t_stack *list)
 {
 	if (list->size < 2)
-		return 0;
+		return ;
 	if (list->size == 2)
 		swap_stack(list);
 	else
@@ -53,15 +51,14 @@ int	rotate_stack(t_stack *list)
 		list->tail->next = NULL;
 	}
 	printf("r%c\n", list->name);
-	return 1;
 }
 
-int	reverse_rotate_stack(t_stack *list)
+void	reverse_rotate_stack(t_stack *list)
 {
 	t_Node	*tmp;
 
 	if (list->size < 2)
-		return 0;
+		return ;
 	if (list->size == 2)
 		swap_stack(list);
 	else
@@ -77,15 +74,4 @@ int	reverse_rotate_stack(t_stack *list)
 		list->tail->next = NULL;
 	}
 	printf("rr%c\n", list->name);
-	return 1;
-}
-
-void __move_list (t_stack *to, t_stack *from)
-{
-	to->head = from->head;
-	to->tail = from->tail;
-	to->size = from->size;
-	from->head = NULL;
-	from->tail = NULL;
-	from->size = 0;
 }

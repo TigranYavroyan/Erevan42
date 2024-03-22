@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigran <tigran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:07:16 by tigran            #+#    #+#             */
-/*   Updated: 2024/03/15 20:10:29 by tigran           ###   ########.fr       */
+/*   Updated: 2024/03/22 18:54:01 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	__is_ascending(t_stack *list)
 		tmp = list->head;
 		while (tmp != NULL && tmp->next != NULL)
 		{
-			if (to_check < tmp->next->value)
+			if (to_check > tmp->next->value)
 				return 0;
 			to_check = tmp->next->value;
 			tmp = tmp->next;
@@ -41,7 +41,7 @@ int	__is_whitespace(const char ch)
 
 void __error ()
 {
-	write (1, "Error\n", 6);
+	write (2, "Error\n", 6);
 	exit(1);
 }
 
@@ -70,3 +70,4 @@ int	__ft_atoi(const char *str)
 		__error();
 	return (sign * res);
 }
+
