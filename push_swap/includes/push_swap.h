@@ -6,7 +6,7 @@
 /*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:40:29 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/03/22 18:56:32 by tyavroya         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:00:52 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
-
 
 typedef struct s_Node
 {
@@ -45,6 +43,7 @@ void	push_stack (t_stack *to, t_stack *from);
 void	rotate_stack(t_stack *list);
 void	reverse_rotate_stack(t_stack *list);
 int		__is_ascending(t_stack *list);
+int		__is_descending(t_stack *list);
 int		__is_whitespace(const char ch);
 int		__ft_atoi(const char *str);
 

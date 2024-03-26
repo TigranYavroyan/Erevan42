@@ -6,7 +6,7 @@
 /*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:07:16 by tigran            #+#    #+#             */
-/*   Updated: 2024/03/22 18:54:01 by tyavroya         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:00:41 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ int	__is_ascending(t_stack *list)
 		while (tmp != NULL && tmp->next != NULL)
 		{
 			if (to_check > tmp->next->value)
+				return 0;
+			to_check = tmp->next->value;
+			tmp = tmp->next;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+int	__is_descending(t_stack *list)
+{
+	int		to_check;
+	t_Node	*tmp;
+
+	if (list->size > 1)
+	{
+		to_check = list->head->value;
+		tmp = list->head;
+		while (tmp != NULL && tmp->next != NULL)
+		{
+			if (to_check < tmp->next->value)
 				return 0;
 			to_check = tmp->next->value;
 			tmp = tmp->next;

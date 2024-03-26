@@ -1,4 +1,4 @@
-NAME = libft.a
+NAME = push_swap.a
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 SRCS = ./srcs/*.c
 OBJS = *.o
