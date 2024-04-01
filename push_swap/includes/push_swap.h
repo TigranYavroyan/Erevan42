@@ -6,7 +6,7 @@
 /*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:40:29 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/03/26 20:00:52 by tyavroya         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:53:59 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ int		__is_ascending(t_stack *list);
 int		__is_descending(t_stack *list);
 int		__is_whitespace(const char ch);
 int		__ft_atoi(const char *str);
+
+int		__check_minimal_a(t_stack *list, t_Node *check);
+void	__check_3_a (t_stack *list);
+void	(*rev_a(t_stack *list)) (t_stack*);
 
 #endif // PUSH_SWAP_H
