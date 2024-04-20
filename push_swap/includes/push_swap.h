@@ -5,50 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 18:40:29 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/04/01 19:53:59 by tyavroya         ###   ########.fr       */
+/*   Created: 2024/04/14 19:22:51 by tyavroya          #+#    #+#             */
+/*   Updated: 2024/04/20 20:39:08 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
+# include <libft.h>
+# include <ft_printf.h>
 
-typedef struct s_Node
+typedef struct s_node
 {
-	int				value;
-	struct s_Node	*next;
-}					t_Node;
+	int				data;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 typedef struct s_stack
 {
-	t_Node			*head;
-	t_Node			*tail;
-	size_t			size;
-	char			name;
-}					t_stack;
+	t_node	*m_head;
+	char	name;
+}	t_stack;
 
-void	init(t_stack *list, char name);
-void	push_front(t_stack *list, int val);
-void	pop_front(t_stack *list);
-void	print(t_stack *list);
-void	clear(t_stack *list);
-void	__error ();
-void	swap_stack (t_stack *list);
-void	push_stack (t_stack *to, t_stack *from);
-void	rotate_stack(t_stack *list);
-void	reverse_rotate_stack(t_stack *list);
-int		__is_ascending(t_stack *list);
-int		__is_descending(t_stack *list);
-int		__is_whitespace(const char ch);
-int		__ft_atoi(const char *str);
+// print
+// void		print_stack(t_stack a, t_stack b);
 
-int		__check_minimal_a(t_stack *list, t_Node *check);
-void	__check_3_a (t_stack *list);
-void	(*rev_a(t_stack *list)) (t_stack*);
+// push_swap
+void		ft_push_swap(t_stack *a, t_stack *b);
 
-#endif // PUSH_SWAP_H
+// stack_sorting
+void		ft_rotate(t_stack *stack);
+void		ft_reverse_rotate(t_stack *stack);
+void		ft_swap(t_stack *stack);
+void		ft_push(t_stack *from, t_stack *to);
+void		ft_pushfront(int n, t_stack *stack);
+
+// new_stack
+t_stack		*ft_new_stack(void);
+t_node		*ft_new_node(int n);
+void		ft_pushback(int n, t_stack *stack);
+int			min_data(t_node *const head);
+
+// sort
+int			ft_is_sorted(t_node *const head);
+int			ft_offset_sort(t_node *const head);
+void		rotate_to_min(t_stack *a, int min, t_stack *b);
+
+// check
+int			check(char **av, int ac);
+long long	ft_arr_int(const char *str);
+size_t		max_len(size_t i, size_t j);
+int			err(void);
+
+#endif //PUSH_SWAP_H

@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_logic.c                                          :+:      :+:    :+:   */
+/*   max_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyavroya <tyavroya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 19:49:46 by tyavroya          #+#    #+#             */
-/*   Updated: 2024/04/01 19:54:31 by tyavroya         ###   ########.fr       */
+/*   Created: 2024/04/20 20:35:32 by tyavroya          #+#    #+#             */
+/*   Updated: 2024/04/20 20:35:39 by tyavroya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include <push_swap.h>
+
+size_t	max_len(size_t i, size_t j)
+{
+	if (i < j)
+		return (i);
+	return (j);
+}
